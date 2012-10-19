@@ -33,6 +33,7 @@ print 'Scraper begin.'
 done = False
 query_subjects = ["Romney", "Obama"]
 while not done:
+    print 'Scraping twitter...',
     try:
         for query in query_subjects:
             search_results = twitter.search(q=query, rpp="100", result_type="current", page=str(1))
@@ -50,9 +51,9 @@ while not done:
                     storage['tweets'].insert(d)
 
     except KeyboardInterrupt:
-        print 'User quit.'
+        print 'User quit.',
         done = True
     except:
-        print 'Crashed! :('
-    print 'Scraping...'
-    time.sleep(10)
+        print 'Crashed! :(',
+    print 'Sleeping 30 seconds.'
+    time.sleep(30)
