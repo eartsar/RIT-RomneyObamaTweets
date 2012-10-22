@@ -29,11 +29,12 @@ except:
 print 'Success.'
 
 
-print 'Scraper begin.'
+print 'TS: Starting'
 done = False
 query_subjects = ["Romney", "Obama"]
 while not done:
-    print 'Scraping twitter...',
+    print 'TS: Polling...',
+    numnew = 0
     try:
         for query in query_subjects:
             search_results = twitter.search(q=query, rpp="100", result_type="current", page=str(1))
@@ -49,11 +50,11 @@ while not done:
                     d['geopos'] = geo['coordinates'] if geo != None else "null"
                     d['scraped_at'] = datetime.now()
                     storage['tweets'].insert(d)
-
+                    numnew += 1
+        print str(numnew) + " new entries."
     except KeyboardInterrupt:
-        print 'User quit.',
+        print 'TS: Quitting.',
         done = True
     except:
-        print 'Crashed! :(',
-    print 'Sleeping 30 seconds.'
+        print 'TS: Crashed! :(',
     time.sleep(30)
