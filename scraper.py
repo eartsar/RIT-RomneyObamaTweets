@@ -8,7 +8,12 @@ import dateutil.parser as parser
 
 
 print 'Connecting to remote database...',
-db = Connection(dbloc, slave_okay=True)
+
+if dbloc is 'localhost':
+    db = Connection()
+else:
+    db = Connection(dbloc, slave_okay=True)
+
 storage = db['electiontweets']
 consuccess = storage.authenticate(mongousr, mongopwd)
 
