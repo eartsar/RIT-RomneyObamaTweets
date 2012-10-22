@@ -8,8 +8,7 @@ import dateutil.parser as parser
 
 
 print 'Connecting to remote database...',
-constr = "mongodb://" + mongousr + ":" + mongopwd + "@ds039707.mongolab.com:39707/electiontweets"
-db = Connection(constr, slave_okay=True)
+db = Connection(dbloc, slave_okay=True)
 storage = db['electiontweets']
 consuccess = storage.authenticate(mongousr, mongopwd)
 
